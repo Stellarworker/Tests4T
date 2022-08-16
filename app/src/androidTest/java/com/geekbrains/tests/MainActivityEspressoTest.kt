@@ -16,6 +16,7 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 
+
 @RunWith(AndroidJUnit4::class)
 class MainActivityEspressoTest {
 
@@ -31,13 +32,38 @@ class MainActivityEspressoTest {
         onView(withId(R.id.searchEditText)).perform(click())
         onView(withId(R.id.searchEditText)).perform(replaceText("algol"), closeSoftKeyboard())
         onView(withId(R.id.searchEditText)).perform(pressImeActionButton())
+        onView(isRoot()).perform(delay())
+        onView(withId(R.id.totalCountTextView)).check(matches(withText("Number of results: 3194")))
+    }
 
-        if (BuildConfig.TYPE == MainActivity.FAKE) {
-            onView(withId(R.id.totalCountTextView)).check(matches(withText("Number of results: 42")))
-        } else {
-            onView(isRoot()).perform(delay())
-            onView(withId(R.id.totalCountTextView)).check(matches(withText("Number of results: 2283")))
-        }
+    @Test
+    fun activitySearch_IsDisplayed() {
+        onView(withId(R.id.searchEditText)).check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun activitySearch_IsCompletelyDisplayed() {
+        onView(withId(R.id.searchEditText)).check(matches(isCompletelyDisplayed()))
+    }
+
+    @Test
+    fun activitySearch_WithText() {
+        onView(withId(R.id.searchEditText)).check(matches(withHint(R.string.search_hint)))
+    }
+
+    @Test
+    fun activityButton_IsDisplayed() {
+        onView(withId(R.id.toDetailsActivityButton)).check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun activityButton_IsCompletelyDisplayed() {
+        onView(withId(R.id.toDetailsActivityButton)).check(matches(isCompletelyDisplayed()))
+    }
+
+    @Test
+    fun activityButton_WithText() {
+        onView(withId(R.id.toDetailsActivityButton)).check(matches(withText("to details")))
     }
 
     private fun delay(): ViewAction? {
