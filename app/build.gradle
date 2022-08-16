@@ -7,6 +7,7 @@ plugins {
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
+    testBuildType "debug"
 
     defaultConfig {
         applicationId "com.geekbrains.tests"
@@ -46,20 +47,6 @@ android {
             includeAndroidResources = true
         }
     }
-    /*
-    flavorDimensions "default"
-    productFlavors {
-        fake {
-            applicationIdSuffix ".fake"
-            versionNameSuffix "-fake"
-            buildConfigField "String", "TYPE", '"FAKE"'
-        }
-        real {
-            applicationIdSuffix ".real"
-            versionNameSuffix "-real"
-            buildConfigField "String", "TYPE", '"REAL"'
-        }
-    } */
 }
 
 dependencies {
